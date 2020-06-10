@@ -1,14 +1,16 @@
 package com.sist.spring;
 import java.util.*;
 import java.sql.*;
-/*
- * 	=> MyBasicDataSource ¸Ş¸ğ¸® ÇÒ´ç ¿äÃ»
- *  => MyBasicDataSource°¡ °¡Áö°íÀÖ´Â setter¿¡ °ªÀ» Ã¤¿î´Ù.
- *  => EmpDAO(MyBasicDataSource ds)
- *  ========================================= Spring¿¡¼­ ¿äÃ»
- *  => MainClass¿¡¼­ È£ÃâÇØ¼­ »ç¿ë
+
+/*  <ìˆœì„œ>
+ *  1. MyBasicDataSource ë©”ëª¨ë¦¬ í• ë‹¹ ìš”ì²­ 
+ *  2. MyBasicDataSourceê°€ ê°€ì§€ê³  ìˆëŠ” Setterì— ê°’ì„ ì±„ìš´ë‹¤
+ *  3. EmpDAO(MyBasicDataSource)
+ *  =============================================== ì—¬ê¸°ê¹Œì§€ëŠ” Springì— ìš”ì²­  
+ *  4. MainClassì—ì„œ í˜¸ì¶œí•´ì„œ ì‚¬ìš© 
  * 
  */
+//SpringBasicProject3 > com.sist.spring2 > EmpDAOì™€ ë¹„êµí•´ë³¼ ê²ƒ 
 public class EmpDAO {
 	private MyBasicDataSource ds;
 	public EmpDAO(MyBasicDataSource ds)
@@ -19,6 +21,7 @@ public class EmpDAO {
 		} catch (Exception e) {}
 	}
 	
+	// ============== Start of ì¤‘ë³µì½”ë“œ ==============
 	private Connection conn;
 	private PreparedStatement ps;
 	
@@ -38,6 +41,7 @@ public class EmpDAO {
 				conn.close();
 		} catch (Exception e) {}
 	}
+	// ============== End of ì¤‘ë³µì½”ë“œ ==============
 	
 	public List<EmpVO> empAllData()
 	{
