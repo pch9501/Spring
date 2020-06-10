@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:c="http://www.springframework.org/schema/c"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.3.xsd">
+	<!-- 사용자정의 클래스 등록하기 -->
+	<context:component-scan base-package="com.sist.*"/>
+	<!-- JSP를 관리해주는 클래스 등록하기 << ViewResolver -->
+	<!-- 
+		사용자 요청(*.do) => DispatcherServlet => Model 안의 ↘
+	해당 JSP로 request를 전송	<== DispatcherServlet <= @RequestMapping("a.do")
+						  ┖ 요기 사이에서 ViewResolver를 이용해서 JSP를 찾고 request를 전송한다.
+						  	ViewResolver가 JSP를 찾기때문에, JSP의 경로명을 설정해야한다.
+	 
+	  아래의 viewResolver를 설정하지않으면, jsp파일을 찾지못한다.
+	 p:prefix는 접두어, p:suffix는 접미어
+	 ex) return을 받을때, return "/main/list.jsp"와 같이 작성했었지만,
+	 	viewResolver를 등록한 후에는 return "list"만 작성해도 된다.
+	 	접두어, 접미어가 붙어서 "/main/list.jsp"의 형태를 만들어주기때문 
+	 -->
+	 <bean id="viewResolver"
+	 	class="org.springframework.web.servlet.view.InternalResourceViewResolver"
+	 	p:prefix="/main/"
+	 	p:suffix=".jsp"	
+	 />
+</beans>
