@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN" "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+<!-- 
+	public String main_main(Model model)
+	{
+		return "main";
+	}
+	
+	definition의 name == 위 함수의 return "main"; / definition name은 return값과 같다.
+	extends: 상속받아 해당하는 녀석(여기서는 main)을 그대로 가져온다.
+	
+	주석처리한 definition처럼 하나씩 설정해줘도 된다.
+	하지만 그렇게 코딩하다보면, 양이 너무 많아지기때문에
+	아래의 definition => name="*/*","*/*/*"과 같이 설정해준다.
+	value도 경로마다 설정해준다.
+ -->
+<tiles-definitions>
+  <definition name="main" template="/WEB-INF/main/main.jsp">
+    <put-attribute name="header" value="/WEB-INF/main/header.jsp"/>
+    <put-attribute name="menu" value="/WEB-INF/main/menu.jsp"/>
+    <put-attribute name="content" value="/WEB-INF/main/content.jsp"/>
+    <put-attribute name="footer" value="/WEB-INF/main/footer.jsp"/>
+  </definition>
+  <definition name="*/*" extends="main">
+    <put-attribute name="content" value="/WEB-INF/{1}/{2}.jsp"/>
+  </definition>
+  <definition name="*/*/*" extends="main">
+    <put-attribute name="content" value="/WEB-INF/{1}/{2}/{3}.jsp"/>
+  </definition>
+  <!-- <definition name="notice/list" extends="main">
+    <put-attribute name="content" value=""/>
+  </definition> -->
+</tiles-definitions>
